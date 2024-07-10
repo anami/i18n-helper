@@ -1,0 +1,112 @@
+{
+  "name": "i18n-helper",
+  "displayName": "i18n-helper",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.91.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "i18n-Helper Configuration",
+      "type": "object",
+      "properties": {
+        "locator.jsonFilePaths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "File paths to i18n JSON files",
+          "default": []
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "key": "ctrl+[",
+        "command": "i18n-helper.peek"
+      },
+      {
+        "key": "ctrl+shift+[",
+        "command": "i18n-helper.gotoLine"
+      },
+      {
+        "key": "ctrl+]",
+        "command": "i18n-helper.copyPath"
+      },
+      {
+        "key": "ctrl+shift+]",
+        "command": "i18n-helper.searchPath"
+      }
+    ],
+    "commands": [
+      {
+        "command": "i18n-helper.peek",
+        "title": "Peek at word"
+      },
+      {
+        "command": "i18n-helper.gotoLine",
+        "title": "Go to line in JSON file"
+      },
+      {
+        "command": "i18n-helper.copyPath",
+        "title": "Copy JSON Path"
+      },
+      {
+        "command": "i18n-helper.searchPath",
+        "title": "Copy and search for JSON Path"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "resourceLangId == json",
+          "command": "i18n-helper.copyPath",
+          "group": "i18n-helper"
+        },
+        {
+          "when": "resourceLangId == jsonc",
+          "command": "i18n-helper.copyPath",
+          "group": "i18n-helper"
+        },
+        {
+          "when": "resourceLangId == json",
+          "command": "i18n-helper.searchPath",
+          "group": "i18n-helper"
+        },
+        {
+          "when": "resourceLangId == jsonc",
+          "command": "i18n-helper.searchPath",
+          "group": "i18n-helper"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.7",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.91.0",
+    "@typescript-eslint/eslint-plugin": "^7.14.1",
+    "@typescript-eslint/parser": "^7.11.0",
+    "@vscode/test-cli": "^0.0.9",
+    "@vscode/test-electron": "^2.4.0",
+    "eslint": "^8.57.0",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "jsonc-parser": "^3.3.1"
+  }
+}
