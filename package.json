@@ -65,23 +65,23 @@
     "menus": {
       "editor/context": [
         {
-          "when": "resourceLangId == json",
+          "when": "resourceLangId == json || resourceLangId == jsonc",
           "command": "i18n-helper.copyPath",
           "group": "i18n-helper"
         },
         {
-          "when": "resourceLangId == jsonc",
-          "command": "i18n-helper.copyPath",
-          "group": "i18n-helper"
-        },
-        {
-          "when": "resourceLangId == json",
+          "when": "resourceLangId == json || resourceLangId == jsonc",
           "command": "i18n-helper.searchPath",
           "group": "i18n-helper"
         },
         {
-          "when": "resourceLangId == jsonc",
-          "command": "i18n-helper.searchPath",
+          "when": "resourceLangId == javascriptreact || resourceLangId == typescriptreact || resourceLangId == javascript || resourceLangId == typescript",
+          "command": "i18n-helper.peek",
+          "group": "i18n-helper"
+        },
+        {
+          "when": "resourceLangId == javascriptreact || resourceLangId == typescriptreact || resourceLangId == javascript || resourceLangId == typescript",
+          "command": "i18n-helper.gotoLine",
           "group": "i18n-helper"
         }
       ]
