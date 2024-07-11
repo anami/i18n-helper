@@ -1,10 +1,12 @@
-# locator README
+# i18n-helper README
 
-This is the README for your extension "locator". After writing up a brief description, we recommend including the following sections.
+i18n-helper is a collection of tools that allows you to peek at the value of a translation key and search for a particular JSON path. 
+It can be used for general JSON purposes but peeking has been limited to finding JSON paths consisting of dots and no brackets. 
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+* Extract JSON path from a JSON file
+* Search for dot delimited strings in a specific list of JSON files and peek at the value or open the JSON file at the location.
 
 For example if there is an image subfolder under your extension project workspace:
 
@@ -12,9 +14,6 @@ For example if there is an image subfolder under your extension project workspac
 
 > Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
 
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
 
 ## Extension Settings
 
