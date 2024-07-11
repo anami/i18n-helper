@@ -41,8 +41,13 @@ export async function getLineNumberForPath(
 ): Promise<LocatorResult> {
   let currentPath = [];
   let lineNumber = 0;
-  let matchingLine = -1;
-  let stringValue = "";
+
+  let result: LocatorResult = {
+    lineNumber: -1,
+    targetPath,
+    filePath: "",
+    targetValue: "",
+  };
 
   const fileStream = fs.createReadStream(filePath);
   const rl = readline.createInterface({
@@ -75,8 +80,10 @@ export async function getLineNumberForPath(
         const string1 = [...currentPath, key].join(".");
 
         if (string1 === targetPath) {
-          matchingLine = lineNumber;
-          stringValue = getValueFromLine(strippedLine);
+          result.lineNumber = lineNumber;
+          result.targetValue = getValueFromLine(strippedLine);
+          result.targetPath = targetPath;
+          result.filePath = filePath;
           break;
         }
       }
@@ -86,12 +93,7 @@ export async function getLineNumberForPath(
   fileStream && fileStream.close();
   rl && rl.close();
 
-  return {
-    lineNumber,
-    targetPath,
-    filePath,
-    targetValue: stringValue,
-  };
+  return result;
 }
 
 function getValueFromLine(line: string) {

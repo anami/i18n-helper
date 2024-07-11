@@ -1,16 +1,11 @@
 import * as vscode from "vscode";
-import { getExtendedWordRange, openFileAtLine } from "./util";
+import { getSelectionOrExtendedWord, openFileAtLine } from "./util";
 import { getLineNumberFromPaths } from "../locator";
 
 export async function gotoLineCommand() {
   const editor = vscode.window.activeTextEditor;
   if (editor) {
-    const document = editor.document;
-    const position = editor.selection.active;
-
-    // Custom function to get the word range including dots and other characters
-    const wordRange = getExtendedWordRange(document, position);
-    const word = wordRange ? document.getText(wordRange) : "";
+    const word = getSelectionOrExtendedWord(editor);
 
     // get the JSON file to check against
     const jsonPaths = vscode.workspace

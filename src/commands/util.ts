@@ -1,5 +1,32 @@
 import * as vscode from "vscode";
 
+export function getSelectionOrExtendedWord(editor: vscode.TextEditor): string {
+  let word = "";
+
+  if (editor) {
+    const document = editor.document;
+    const position = editor.selection.active;
+    const selection = editor.selection;
+    // first check if there is a selection of some length
+
+    if (selection && !selection.isEmpty) {
+      const selectionRange = new vscode.Range(
+        selection.start.line,
+        selection.start.character,
+        selection.end.line,
+        selection.end.character
+      );
+      word = document.getText(selectionRange);
+    } else {
+      // Custom function to get the word range including dots and other characters
+      const wordRange = getExtendedWordRange(document, position);
+      word = wordRange ? document.getText(wordRange) : "";
+    }
+  }
+
+  return word;
+}
+
 export function getExtendedWordRange(
   document: vscode.TextDocument,
   position: vscode.Position

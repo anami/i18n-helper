@@ -30,6 +30,7 @@ export async function searchPathCommand() {
     vscode.commands.executeCommand("workbench.action.findInFiles", {
       query: path,
       triggerSearch: true,
+      filesToInclude: "*.jsx, *.js, *.ts, *.tsx",
     });
   } else {
     vscode.window.showErrorMessage("Failed to copy path");
