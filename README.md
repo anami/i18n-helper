@@ -26,6 +26,10 @@ Calling out known issues can help limit users opening duplicate issues against y
 
 Users appreciate release notes as you update your extension.
 
+### 0.0.4
+
+- Display peek word at the end of the line
+
 ### 0.0.3
 
 - First working version with word selection

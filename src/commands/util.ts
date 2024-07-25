@@ -85,6 +85,8 @@ export function showInfoAtCursor(message: string) {
   }
 
   const position = editor.selection.active;
+  const line = editor.document.lineAt(position.line);
+  const endPosition = line.range.end;
 
   // Create a decoration type
   const decorationType = vscode.window.createTextEditorDecorationType({
@@ -99,7 +101,7 @@ export function showInfoAtCursor(message: string) {
 
   // Apply the decoration
   editor.setDecorations(decorationType, [
-    { range: new vscode.Range(position, position) },
+    { range: new vscode.Range(endPosition, endPosition) },
   ]);
 
   // Optionally clear the decoration after some time
